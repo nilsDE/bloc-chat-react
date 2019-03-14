@@ -13,15 +13,22 @@ class RoomList extends Component {
   componentDidMount() {
     console.log('Component did mount');
     this.roomsRef.on('child_added', snapshot => {
-      console.log(snapshot);
-      
+      const room = snapshot.val();
+      room.key = snapshot.key;
+      this.setState({ rooms: this.state.rooms.concat(room)});    
     });
   }
 
+
   render() {
     return (
-      <div>
-        <p>This is my Component!</p>
+      <div id="room-list">
+        <h1>Bloc Chat</h1>
+        <ul>
+        {this.state.rooms.map((room) =>
+          <li>{room.name}</li>
+        )}
+        </ul>
       </div>
     )
   }
