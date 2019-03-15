@@ -6,12 +6,13 @@
 #room-list h1 {
   margin: 0;
   padding: 20px 0 0 10px;
+  display: inline;
 }
 
 #room-list {
   background: rgb(196, 196, 196);
   height: 100vh;
-  width: 200px;;;
+  width: 270px;
 }
 
 #room-list ul {
@@ -21,4 +22,13 @@
 
 #room-list ul li {
   padding: 20px 0 0 10px;
+}
+
+#room-button {
+  padding: 5px;
+  margin: 10px;
+  font-size: 1.0em;
+  background: rgb(14, 116, 211);
+  color: white;
+  cursor: pointer;
 }

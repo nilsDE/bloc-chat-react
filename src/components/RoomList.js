@@ -18,10 +18,17 @@ class RoomList extends Component {
       this.setState({ rooms: this.state.rooms.concat(room)});    
     });
   }
-
+  
+  createRoom() {
+    let newRoom = document.getElementById('room-name').value;
+    console.log(newRoom);
+    this.roomsRef.push({
+      name: newRoom
+    });
+    }
 
   render() {
-    return (
+    return (     
       <div id="room-list">
         <h1>Bloc Chat</h1>
         <ul>
@@ -29,10 +36,13 @@ class RoomList extends Component {
           <li key={room.key}>{room.name}</li>
         )}
         </ul>
+        <form>
+          <input type="text" id="room-name" name="roomname" placeholder="Enter name of new Chat Room"></input>
+          <input type="button" id="room-button" value="Create new room" onClick={this.createRoom}></input>
+        </form>
       </div>
     )
-  }
-  
+  }  
 }
 
 
