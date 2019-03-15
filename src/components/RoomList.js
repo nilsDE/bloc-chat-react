@@ -3,29 +3,29 @@ import React, { Component } from 'react';
 class RoomList extends Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
       rooms: []
     }
-    this.roomsRef = this.props.firebase.database().ref('rooms');    
+  
+    this.roomsRef = this.props.firebase.database().ref('rooms');
+    this.createRoom = this.createRoom.bind(this);  
   }
   
   componentDidMount() {
-    console.log('Component did mount');
     this.roomsRef.on('child_added', snapshot => {
       const room = snapshot.val();
       room.key = snapshot.key;
-      this.setState({ rooms: this.state.rooms.concat(room)});    
+      this.setState({ rooms: this.state.rooms.concat(room)});  
     });
   }
-  
-  createRoom() {
+
+  createRoom() {    
     let newRoom = document.getElementById('room-name').value;
-    console.log(newRoom);
     this.roomsRef.push({
       name: newRoom
     });
-    }
+    } 
 
   render() {
     return (     
@@ -44,6 +44,5 @@ class RoomList extends Component {
     )
   }  
 }
-
 
 export default RoomList;
