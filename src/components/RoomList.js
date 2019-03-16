@@ -22,10 +22,13 @@ class RoomList extends Component {
 
   createRoom() {    
     let newRoom = document.getElementById('room-name').value;
-    this.roomsRef.push({
-      name: newRoom
-    });
-    } 
+    if(newRoom !== '') {
+      this.roomsRef.push({
+        name: newRoom
+      });
+      document.getElementById('room-name').value = '';
+      } 
+    }
 
   render() {
     return (     
