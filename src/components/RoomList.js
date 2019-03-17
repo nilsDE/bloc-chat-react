@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class RoomList extends Component {
   constructor(props) {
@@ -34,11 +35,14 @@ class RoomList extends Component {
     return (     
       <div id="room-list">
         <h1>Bloc Chat</h1>
-        <ul>
         {this.state.rooms.map((room) =>
-          <li key={room.key}>{room.name}</li>
+            <Link to={`/room/${room.name}`} 
+                  key={room.key} 
+                  className={this.props.currentRoom === room ? "link active" : "link"}  
+                  onClick={() => this.props.setActiveRoom(room)}  >
+              <span>{room.name}</span>
+            </Link>
         )}
-        </ul>
         <form>
           <input type="text" id="room-name" name="roomname" placeholder="Enter name of new Chat Room"></input>
           <input type="button" id="room-button" value="Create new room" onClick={this.createRoom}></input>

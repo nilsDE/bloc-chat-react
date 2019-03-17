@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import * as firebase from 'firebase';
 import './App.css';
 import RoomList from './components/RoomList.js';
+import MessageList from './components/MessageList.js';
 
   // Initialize Firebase
   var config = {
@@ -15,10 +17,24 @@ import RoomList from './components/RoomList.js';
   firebase.initializeApp(config);
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      activeRoom: []
+    }
+    this.setActiveRoom = this.setActiveRoom.bind(this);
+  }
+
+  setActiveRoom(selectedRoom) {
+    this.setState({activeRoom: selectedRoom})
+  };
+
   render() {
     return (
       <div className="App">
-        <RoomList firebase={firebase}/>
+        <RoomList firebase={firebase} setActiveRoom={this.setActiveRoom} currentRoom={this.state.activeRoom} />
+        <Route path="/room/:slug" render={() => <MessageList currentRoom={this.state.activeRoom} firebase={firebase}  /> } />
       </div>      
     );
   }
