@@ -7,12 +7,7 @@
   display: flex;
 }
 
-.App h1 {
-  margin-left: 10px;
-}
-
 #room-list h1 {
-  margin: 0;
   padding: 20px 0 0 10px;
   display: inline;
 }
@@ -43,7 +38,7 @@
 
 #room-name {
   margin: 30px 0 0 10px;
-  width: 200px;
+  width: 190px;
 }
 
 .link {
@@ -55,5 +50,42 @@
 }
 
 .active {
-  color: blue;
+  color: rgb(14, 116, 211);
+}
+
+#message-list {
+  margin: 40px auto 0;
+  text-align: left;
+  width: 100%;
+}
+
+#message-list td {
+  border-bottom: 1px solid black;
+}
+
+#message-list td span {
+  display: block;
+}
+
+.username {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.table-header {
+  background: rgb(14, 116, 211);
+  color: white;
+}
+
+th, td {
+  padding: 3px;
+}
+
+#message-container {
+  width: 100%;
+  padding: 0 10px;
+}
+
+tbody tr:nth-child(odd) {
+  background: #eee;
 }

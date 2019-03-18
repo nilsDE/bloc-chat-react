@@ -13,16 +13,35 @@ class MessageList extends Component {
     this.messagesRef.on('child_added', snapshot => {
       const message = snapshot.val();
       message.key = snapshot.key;
-        this.setState({ messages: this.state.messages.concat(message)}); 
-      
+      this.setState({ messages: this.state.messages.concat(message)});
     });
   }
 
   render() {
     if(this.props.currentRoom.length !== 0) {
       return (
-        <div>
+        <div id="message-container">
           <h1>You are in {this.props.currentRoom.name}!</h1>
+          <table id="message-list">
+              <thead>
+                <tr className="table-header">
+                  <th>User and Message</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tbody>
+              {this.state.messages.filter(msg => msg.roomId === parseInt(this.props.currentRoom.key)).map((msg) =>
+              <tr key={msg.key}>
+                <td>
+                  <span className="username">{msg.username}</span>
+                  <span>{msg.content}</span>
+                </td>
+                <td>{msg.sentAt}</td>
+              </tr>
+            
+              )}      
+              </tbody>
+            </table>          
        </div>
       )
     } else {

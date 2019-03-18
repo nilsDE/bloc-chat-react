@@ -4,6 +4,7 @@ import * as firebase from 'firebase';
 import './App.css';
 import RoomList from './components/RoomList.js';
 import MessageList from './components/MessageList.js';
+import Landing from './components/Landing.js';
 
   // Initialize Firebase
   var config = {
@@ -34,6 +35,7 @@ class App extends Component {
     return (
       <div className="App">
         <RoomList firebase={firebase} setActiveRoom={this.setActiveRoom} currentRoom={this.state.activeRoom} />
+        <Route exact path="/" component={Landing} />
         <Route path="/room/:slug" render={() => <MessageList currentRoom={this.state.activeRoom} firebase={firebase}  /> } />
       </div>      
     );
