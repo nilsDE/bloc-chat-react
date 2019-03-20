@@ -24,7 +24,7 @@ class App extends Component {
     this.state = {
       activeRoom: []
     }
-    this.setActiveRoom = this.setActiveRoom.bind(this);
+    // this.setActiveRoom = this.setActiveRoom.bind(this);
   }
 
   setActiveRoom(selectedRoom) {
@@ -34,7 +34,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <RoomList firebase={firebase} setActiveRoom={this.setActiveRoom} currentRoom={this.state.activeRoom} />
+        <RoomList firebase={firebase} setActiveRoom={(selectedRoom) => this.setActiveRoom(selectedRoom)} currentRoom={this.state.activeRoom} />
         <Route exact path="/" component={Landing} />
         <Route path="/room/:slug" render={() => <MessageList currentRoom={this.state.activeRoom} firebase={firebase}  /> } />
       </div>      

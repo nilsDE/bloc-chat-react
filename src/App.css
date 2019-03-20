@@ -8,14 +8,15 @@
 }
 
 #room-list h1 {
-  padding: 20px 0 0 10px;
-  display: inline;
+  padding: 0 0 20px 10px;
+ 
 }
 
 #room-list {
   background: rgb(196, 196, 196);
   height: 100vh;
-  width: 270px;
+  min-width: 220px;
+  width: 220px;
 }
 
 #room-list ul {
@@ -53,39 +54,28 @@
   color: rgb(14, 116, 211);
 }
 
-#message-list {
-  margin: 40px auto 0;
-  text-align: left;
-  width: 100%;
-}
-
-#message-list td {
-  border-bottom: 1px solid black;
-}
-
-#message-list td span {
-  display: block;
-}
-
 .username {
   font-weight: bold;
   font-style: italic;
 }
 
-.table-header {
-  background: rgb(14, 116, 211);
-  color: white;
-}
-
-th, td {
-  padding: 3px;
+.container {
+  width: 100%;
 }
 
 #message-container {
-  width: 100%;
-  padding: 0 10px;
+  width: 98%;
+  margin: 20px 10px;
 }
 
-tbody tr:nth-child(odd) {
+.message {
+  padding: 5px;
+}
+
+#message-container div:nth-child(odd) {
   background: #eee;
+}
+
+.headline {
+  margin: 0 10px 20px 10px;
 }
