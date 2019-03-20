@@ -79,3 +79,24 @@
 .headline {
   margin: 0 10px 20px 10px;
 }
+
+.login-btn {
+  text-align: right;
+  width: 100%;
+  background: rgb(14, 116, 211);
+}
+
+.btn {
+  margin: 10px 20px;
+  border: 1px solid grey;
+  padding: 5px;
+
+}
+
+.landing-wrapper {
+  width: 100%;
+}
+
+.user-message {
+  color: white;
+}

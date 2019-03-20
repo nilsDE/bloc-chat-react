@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 class MessageList extends Component {
   constructor(props) {
@@ -35,7 +35,9 @@ class MessageList extends Component {
       )
     } else {
       return (
-        <h1 className="headline">Please select a room!</h1>
+        <div className="container">
+          <h1 className="headline">Please select a room!</h1>
+        </div>
       )
     }
   }

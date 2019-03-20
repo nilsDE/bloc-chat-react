@@ -5,6 +5,7 @@ import './App.css';
 import RoomList from './components/RoomList.js';
 import MessageList from './components/MessageList.js';
 import Landing from './components/Landing.js';
+import User from './components/User.js';
 
   // Initialize Firebase
   var config = {
@@ -22,7 +23,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      activeRoom: []
+      activeRoom: [],
+      activeUser: null
     }
     // this.setActiveRoom = this.setActiveRoom.bind(this);
   }
@@ -31,12 +33,19 @@ class App extends Component {
     this.setState({activeRoom: selectedRoom})
   };
 
+  setUser(user) {
+    this.setState({activeUser: user})
+  };
+
   render() {
     return (
       <div className="App">
         <RoomList firebase={firebase} setActiveRoom={(selectedRoom) => this.setActiveRoom(selectedRoom)} currentRoom={this.state.activeRoom} />
-        <Route exact path="/" component={Landing} />
-        <Route path="/room/:slug" render={() => <MessageList currentRoom={this.state.activeRoom} firebase={firebase}  /> } />
+        <div className="landing-wrapper">
+          <User firebase={firebase} setUser={user => this.setUser(user)} activeUser={this.state.activeUser} />
+          <Route exact path="/" render={() => <Landing /> } />
+          <Route path="/room/:slug" render={() => <MessageList currentRoom={this.state.activeRoom} firebase={firebase} /> } />          
+        </div>
       </div>      
     );
   }
