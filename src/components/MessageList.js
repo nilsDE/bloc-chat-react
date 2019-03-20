@@ -18,28 +18,31 @@ class MessageList extends Component {
   }
 
   render() {
-    if(this.props.currentRoom.length !== 0) {
-      return (
+    return (        
+      this.props.currentRoom.length !== 0 ?
         <div className="container">
           <h1 className="headline">You are in {this.props.currentRoom.name}!</h1>
-          <div id="message-container">
+          <div className="message-container">
             {this.state.messages.filter(msg => msg.roomId === parseInt(this.props.currentRoom.key)).map((msg) =>
               <div key={msg.key} className="message">
-                  <span>({msg.sentAt})</span>
-                  <span className="username"> {msg.username}: </span>
-                  <span>{msg.content}</span>
+                <span>({msg.sentAt})</span>
+                <span className="username"> {msg.username}: </span>
+                <span>{msg.content}</span>
               </div>            
             )}      
+          </div>
+          <div className="input-container">
+            <input type="button" className="send-btn" value="send"></input>
+            <div className="text-box">
+              <input type="text" className="text-field" placeholder="Enter your message here"></input>
+            </div>            
+          </div>
         </div>
-       </div>
-      )
-    } else {
-      return (
+      :
         <div className="container">
           <h1 className="headline">Please select a room!</h1>
         </div>
-      )
-    }
+    )
   }
 }
 
