@@ -17,24 +17,52 @@ class MessageList extends Component {
     });
   }
 
+  createMessage() {  
+    if(this.props.activeUser !== null) {  
+    let newMessage = document.getElementById('text-field').value;
+    if(newMessage !== '') {
+      this.messagesRef.push({
+        content: newMessage,
+        roomId: this.props.currentRoom.key,
+        sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
+        username: this.props.activeUser.displayName
+      });
+      document.getElementById('text-field').value = '';
+      } 
+    } else {
+      alert('You need to be logged in to be able to chat!');
+      document.getElementById('text-field').value = '';
+    }
+  }
+
+
+    getCorrectTime(t) {
+      let dt = new Date(t);
+      let hr = dt.getHours();
+      let m = "0" + dt.getMinutes();
+      return hr+ ':' +m.substr(-2);
+  }
+
   render() {
     return (        
       this.props.currentRoom.length !== 0 ?
         <div className="container">
           <h1 className="headline">You are in {this.props.currentRoom.name}!</h1>
           <div className="message-container">
-            {this.state.messages.filter(msg => msg.roomId === parseInt(this.props.currentRoom.key)).map((msg) =>
+            {this.state.messages.filter(msg => msg.roomId.toString() === this.props.currentRoom.key)
+                                .sort((a, b) => a - b)
+                                .map((msg) =>
               <div key={msg.key} className="message">
-                <span>({msg.sentAt})</span>
+                <span>({this.getCorrectTime(msg.sentAt)})</span>
                 <span className="username"> {msg.username}: </span>
                 <span>{msg.content}</span>
               </div>            
             )}      
           </div>
           <div className="input-container">
-            <input type="button" className="send-btn" value="send"></input>
+            <input type="button" className="send-btn" value="send" onClick={() => this.createMessage()}></input>
             <div className="text-box">
-              <input type="text" className="text-field" placeholder="Enter your message here"></input>
+              <input type="text" id="text-field" placeholder="Enter your message here"></input>
             </div>            
           </div>
         </div>

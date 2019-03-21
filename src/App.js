@@ -44,7 +44,7 @@ class App extends Component {
         <div className="landing-wrapper">
           <User firebase={firebase} setUser={user => this.setUser(user)} activeUser={this.state.activeUser} />
           <Route exact path="/" render={() => <Landing /> } />
-          <Route path="/room/:slug" render={() => <MessageList currentRoom={this.state.activeRoom} firebase={firebase} /> } />          
+          <Route path="/room/:slug" render={() => <MessageList currentRoom={this.state.activeRoom} activeUser={this.state.activeUser} firebase={firebase} /> } />          
         </div>
       </div>      
     );
