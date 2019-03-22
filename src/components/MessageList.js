@@ -15,6 +15,12 @@ class MessageList extends Component {
       message.key = snapshot.key;
       this.setState({ messages: this.state.messages.concat(message)});
     });
+    this.messagesRef.on('child_removed', snapshot => {
+      const message = snapshot.val();
+      message.key = snapshot.key;
+      let messages = this.state.messages.filter(msg => msg.key !== message.key);
+      this.setState({messages: messages})
+    });
   }
 
   createMessage() {  
@@ -35,6 +41,10 @@ class MessageList extends Component {
     }
   }
 
+  deleteMessage(msg) {
+    let newRef = this.messagesRef.child(msg.key);
+    newRef.remove();
+  }
 
     getCorrectTime(t) {
       let dt = new Date(t);
@@ -56,6 +66,7 @@ class MessageList extends Component {
                 <span>({this.getCorrectTime(msg.sentAt)})</span>
                 <span className="username"> {msg.username}: </span>
                 <span>{msg.content}</span>
+                <button className="delete-btn" onClick={() => this.deleteMessage(msg)}>x</button>
               </div>            
             )}      
           </div>
