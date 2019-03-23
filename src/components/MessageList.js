@@ -66,7 +66,9 @@ class MessageList extends Component {
                 <span>({this.getCorrectTime(msg.sentAt)})</span>
                 <span className="username"> {msg.username}: </span>
                 <span>{msg.content}</span>
-                <button className="delete-btn" onClick={() => this.deleteMessage(msg)}>x</button>
+                {(this.props.activeUser !== null && msg.username === this.props.activeUser.displayName) ?
+                <button className="delete-btn" onClick={() => this.deleteMessage(msg)}>x</button> : ''
+                }
               </div>            
             )}      
           </div>
